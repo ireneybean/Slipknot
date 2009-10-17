@@ -10,6 +10,9 @@ module NavigationHelpers
     
     when /the home\s?page/
       '/'
+    when /the new show_donation_page page/
+      new_show_donation_page_path
+
     
     # Add more mappings here.
     # Here is a more fancy example:
