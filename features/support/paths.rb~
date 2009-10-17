@@ -10,7 +10,7 @@ module NavigationHelpers
     
     when /the home\s?page/
       '/'
-    when /the donation page/
+    when /the new show_donation_page page/
       '/'
 
     
