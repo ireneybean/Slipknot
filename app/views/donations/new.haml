@@ -1,7 +1,15 @@
-%html
-  %body
-    %h1 Support Escape Artists!
-    -form_for @donation do |form|
-      =form.label :amount
-      =form.text_field :amount
-
+%h1 Support Escape Artists!
+-form_for @donation do |form|
+  =form.label :amount
+  =form.text_field :amount
+  %br
+  =form.check_box :escape_pod
+  =form.label :escape_pod
+  %br
+  =form.label :name
+  =form.text_field :name
+  %br
+  =form.label :email
+  =form.text_field :email
+  %br
+  =form.submit "Donate"

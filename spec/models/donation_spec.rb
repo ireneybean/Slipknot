@@ -28,4 +28,10 @@ describe Donation do
     d.amount_cents = 1535
     d.amount.should == 15.35
   end
+  
+  it "converts the amount as a string to cents" do
+    d = Donation.new
+    d.amount = "15.35"
+    d.amount_cents.should == 1535
+  end  
 end

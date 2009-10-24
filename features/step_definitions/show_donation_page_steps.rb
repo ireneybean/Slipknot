@@ -1,14 +1,9 @@
-Given /^the following show_donation_pages:$/ do |show_donation_pages|
-  ShowDonationPage.create!(show_donation_pages.hashes)
+
+Then /^I should have a donation for "([^\"]*)"$/ do |name|
+  @donation = Donation.find_by_name(name)
 end
 
-When /^I delete the (\d+)(?:st|nd|rd|th) show_donation_page$/ do |pos|
-  visit show_donation_pages_url
-  within("table > tr:nth-child(#{pos.to_i+1})") do
-    click_link "Destroy"
-  end
+Then /^I should see a button labeled "([^\"]*)"$/ do |value|
+  response.should have_tag('input',:type => 'submit', :value => value)
 end
 
-Then /^I should see the following show_donation_pages:$/ do |expected_show_donation_pages_table|
-  expected_show_donation_pages_table.diff!(table_at('table').to_a)
-end

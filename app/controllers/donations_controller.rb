@@ -14,6 +14,10 @@ class DonationsController < ApplicationController
   
   # POST action to create the record
   def create
+    @donation = Donation.new(params[:donation])
+    if @donation.save
+      redirect_to new_donation_payment_path(@donation)
+    end
   end
   
   # Show the form to alter exiting record

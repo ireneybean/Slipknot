@@ -10,8 +10,10 @@ module NavigationHelpers
     
     when /the home\s?page/
       '/'
-    when /the donation page/
+    when /the new donation page/
       '/'
+    when /the new payment page for that donation/
+      new_donation_payment_path(@donation)
 
     
     # Add more mappings here.
