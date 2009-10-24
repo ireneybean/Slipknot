@@ -9,6 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20091024164002) do
+
+  create_table "donations", :force => true do |t|
+    t.integer  "amount_cents"
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "escape_pod"
+    t.boolean  "pseudopod"
+    t.boolean  "podcastle"
+    t.boolean  "recurring"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

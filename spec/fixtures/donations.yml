@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  amount_cents: 1
+  name: MyString
+  email: MyString
+  escape_pod: false
+  pseudopod: false
+  podcastle: false
+  recurring: false
+
+two:
+  amount_cents: 1
+  name: MyString
+  email: MyString
+  escape_pod: false
+  pseudopod: false
+  podcastle: false
+  recurring: false

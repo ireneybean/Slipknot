@@ -1,0 +1,7 @@
+%html
+  %body
+    %h1 Support Escape Artists!
+    -form_for @donation do |form|
+      =form.label :amount
+      =form.text_field :amount
+

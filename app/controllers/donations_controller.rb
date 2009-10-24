@@ -9,6 +9,7 @@ class DonationsController < ApplicationController
   
   # Show the form to make a new record
   def new
+    @donation = Donation.new
   end
   
   # POST action to create the record
