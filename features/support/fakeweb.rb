@@ -1,1 +1,0 @@
-FakeWeb.register_uri(:post, "https://www.paypal.com/cgi-bin/webscr", :body => "This is paypal")

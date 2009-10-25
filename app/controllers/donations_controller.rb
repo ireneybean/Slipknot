@@ -17,6 +17,8 @@ class DonationsController < ApplicationController
     @donation = Donation.new(params[:donation])
     if @donation.save
       redirect_to new_donation_payment_path(@donation)
+    else
+      render :new
     end
   end
   

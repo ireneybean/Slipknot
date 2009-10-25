@@ -17,11 +17,18 @@ Feature: show_donation_pages
     And I press "Donate"
     Then I should have a donation for "Bob Smith"
     And I should be on the new payment page for that donation
-    And I should see "Single Donation"
-    And I should see a button labeled "Pay with Paypal"
+    
 
   Scenario: make a payment
     Given I have made a donation record
     And I am on the new payment page for that donation
-    When I press "Pay with Paypal"
-    Then I should be redirected to Paypal
+    Then I should see "Single Donation"
+    And I should see the paypal form
+    And a hidden "amount" should be the donation amount
+    And a hidden "item_number" should be the donation id
+
+  Scenario: validate donation amout
+    Given I am on the new donation page
+    When I fill in "Amount" with "-1"
+    And I press "Donate"
+    Then I should see "Amount must be greater than 0"

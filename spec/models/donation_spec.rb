@@ -11,6 +11,7 @@ describe Donation do
       :podcastle => false,
       :recurring => false
     }
+    @d = Donation.new
   end
 
   it "should create a new instance given valid attributes" do
@@ -18,20 +19,22 @@ describe Donation do
   end
 
   it "converts the amount to cents" do
-    d = Donation.new
-    d.amount = 15.35
-    d.amount_cents.should == 1535
+    @d.amount = 15.35
+    @d.amount_cents.should == 1535
   end
 
   it "converts the amount in cents to amount in dollars" do
-    d = Donation.new
-    d.amount_cents = 1535
-    d.amount.should == 15.35
+    @d.amount_cents = 1535
+    @d.amount.should == 15.35
   end
   
   it "converts the amount as a string to cents" do
-    d = Donation.new
-    d.amount = "15.35"
-    d.amount_cents.should == 1535
-  end  
+    @d.amount = "15.35"
+    @d.amount_cents.should == 1535
+  end
+
+  it "should not allow the donation amount to be less than 0" do
+    @d.amount = -1
+    @d.should_not be_valid
+  end
 end
