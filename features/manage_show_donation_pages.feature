@@ -19,3 +19,9 @@ Feature: show_donation_pages
     And I should be on the new payment page for that donation
     And I should see "Single Donation"
     And I should see a button labeled "Pay with Paypal"
+
+  Scenario: make a payment
+    Given I have made a donation record
+    And I am on the new payment page for that donation
+    When I press "Pay with Paypal"
+    Then I should be redirected to Paypal

@@ -1,5 +1,27 @@
 %p Thanks!  You have chosen to make a Single Donation.  You are fabulous.
 
-%form{ :action => "http://www.paypal.com"}
-  %input{:type => "submit", :value => "Pay with Paypal"}
-  
+%form{ :action => "https://www.paypal.com/cgi-bin/webscr"}
+
+  %input{:type => "image", :src => "http://www.escapepod.org/wp-content/images/EPDonate_1Time.jpg"}
+  / Need a .jpg that is not podcast specific
+
+  %input{:type=>"hidden", :name=>"cmd", :value=>"_xclick">
+  /use _donations type?
+
+  %input{:type=>"hidden", :name=>"amount", value=>"=@donation.amount"}
+
+  %input{:type=>"hidden", :name=>"item_name", value=>"Escape Artists Single Donation"}
+
+  %input{:type=>"hidden", :name=>"tax" value="0">
+
+  %input{:type=>"hidden", :name=>"business",:value="editor@escapepod.org">
+
+  %input{:type=>"hidden", :name=>"item_number" value="=@donation.id"}
+
+  %input{:type=>"hidden", :name=>"currency_code" value="USD"}
+
+  %input{:type=>"hidden", :name=>"no_shipping" value="1"}
+
+  %input{:type=>"hidden", :name=>"invoice" value="??"}
+  /Need this?
+
