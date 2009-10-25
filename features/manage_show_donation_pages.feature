@@ -7,6 +7,9 @@ Feature: show_donation_pages
   Scenario: go to donation page
     When I go to the new donation page
     Then I should see "Support Escape Artists!"
+    And I should see "Escape Pod"
+    And I should see "PodCastle"
+    And I should see "Pseudopod"
 
   Scenario: fill in donor form
     Given I am on the new donation page
