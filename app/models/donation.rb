@@ -2,7 +2,7 @@ class Donation < ActiveRecord::Base
 
   validates_numericality_of :amount_cents, :greater_than=>0
   def amount
-    self.amount_cents.to_f/100
+    self.amount_cents.to_f/100 if self.amount_cents
   end
   def amount=(val)
     self.amount_cents = val.to_f * 100
