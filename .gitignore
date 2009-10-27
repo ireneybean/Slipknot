@@ -1,5 +1,7 @@
 *.log
 *.sqlite3
 *.*~
-ignore
+ignore/
 *.tmproj
+nbproject/
+
