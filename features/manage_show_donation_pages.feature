@@ -13,10 +13,10 @@ Feature: show_donation_pages
 
   Scenario: fill in donor form
     Given I am on the new donation page
-    When I fill in "Amount" with "15"
+    When I fill in "I want to donate" with "15"
     And I check "Escape Pod"
-    And I fill in "Name" with "Bob Smith"
-    And I fill in "Email" with "bobsmith@gmail.com"
+    And I fill in "My name" with "Bob Smith"
+    And I fill in "My email" with "bobsmith@gmail.com"
     And I press "Donate"
     Then I should have a donation for "Bob Smith"
     And I should be on the new payment page for that donation
@@ -32,6 +32,6 @@ Feature: show_donation_pages
 
   Scenario: validate donation amout
     Given I am on the new donation page
-    When I fill in "Amount" with "-1"
+    When I fill in "I want to donate" with "-1"
     And I press "Donate"
     Then I should see "Amount must be greater than 0"

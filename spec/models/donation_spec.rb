@@ -28,6 +28,11 @@ describe Donation do
     @d.amount.should == 15.35
   end
   
+  it "returns a blank amount if there are no cents" do
+    @d.amount_cents = nil
+    @d.amount.should be_nil
+  end
+  
   it "converts the amount as a string to cents" do
     @d.amount = "15.35"
     @d.amount_cents.should == 1535
