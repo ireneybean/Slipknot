@@ -10,6 +10,11 @@ Feature: show_donation_pages
     And I should see "Escape Pod"
     And I should see "PodCastle"
     And I should see "Pseudopod"
+    And I should see "Monthly"
+    And the "Escape Pod" checkbox should be checked
+    And the "PodCastle" checkbox should be checked
+    And the "Pseudopod" checkbox should be checked
+    And the "Monthly" checkbox should not be checked
 
   Scenario: fill in donor form
     Given I am on the new donation page
@@ -21,14 +26,20 @@ Feature: show_donation_pages
     Then I should have a donation for "Bob Smith"
     And I should be on the new payment page for that donation
     
-
-  Scenario: make a payment
-    Given I have made a donation record
+  Scenario: make a single payment
+    Given I have made a "single" donation record
     And I am on the new payment page for that donation
     Then I should see "Single Donation"
     And I should see the paypal form
     And a hidden "amount" should be the donation amount
     And a hidden "item_number" should be the donation id
+    
+  Scenario: make a recurring payment
+    Given I have made a "monthly" donation record
+    And I am on the new payment page for that donation
+    Then I should see "Monthly Donation"
+    And I should see the paypal form
+    And a hidden "a3" should be the donation amount
 
   Scenario: validate donation amout
     Given I am on the new donation page

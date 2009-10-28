@@ -12,6 +12,9 @@
   %p
     =form.label :amount, "I want to donate: $"
     =form.text_field :amount, :size => 6
+  
+    =form.check_box :recurring
+    =form.label :recurring, "Monthly"
   %p
     I would like my donation to support:
     %br

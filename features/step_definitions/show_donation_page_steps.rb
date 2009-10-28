@@ -7,8 +7,8 @@ Then /^I should see a button labeled "([^\"]*)"$/ do |value|
   response.should have_tag('input',:type => 'submit', :value => value)
 end
 
-Given /^I have made a donation record$/ do
-  @donation = Donation.create(:name => "Bob", :email => "BobSmith@gmail.com", :amount => 15, :escape_pod => true, :recurring => false)
+Given /^I have made a "([^\"]*)" donation record$/ do |type|
+  @donation = Donation.create(:name => "Bob", :email => "BobSmith@gmail.com", :amount => 15, :escape_pod => true, :recurring => type=="monthly")
 end
 
 Then /^I should see the paypal form$/ do
