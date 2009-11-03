@@ -6,7 +6,7 @@
 
 %form{ :action => "https://www.paypal.com/cgi-bin/webscr"}
 
-  %input{:type => "image", :src => "https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif"}
+  %input{:type => "image", :src => "/images/btn_donate_LG.gif"}
   -if @donation.recurring
     -#fields for recurring donation
     %input{:type=>"hidden", :name=>"cmd", :value=>"_xclick-subscriptions"}
