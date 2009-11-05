@@ -25,11 +25,16 @@ Feature: show_donation_pages
     And I press "Donate"
     Then I should have a donation for "Bob Smith"
     And I should be on the new payment page for that donation
-    
+
   Scenario: make a single payment
     Given I have made a "single" donation record
     And I am on the new payment page for that donation
-    Then I should see "Single Donation"
+    Then a hidden "cmd" should be "_donations"
+    And I should see "Bob"
+    And I should see "BobSmith@gmail.com"
+    And I should see "right now"
+    And I should see "15.00"
+    And I should see "Escape Pod"
     And I should see the paypal form
     And a hidden "amount" should be the donation amount
     And a hidden "item_number" should be the donation id
@@ -37,9 +42,10 @@ Feature: show_donation_pages
   Scenario: make a recurring payment
     Given I have made a "monthly" donation record
     And I am on the new payment page for that donation
-    Then I should see "Monthly Donation"
+    Then I should see "monthly"
     And I should see the paypal form
     And a hidden "a3" should be the donation amount
+    And a hidden "cmd" should be "_xclick-subscriptions"
 
   Scenario: validate donation amout
     Given I am on the new donation page

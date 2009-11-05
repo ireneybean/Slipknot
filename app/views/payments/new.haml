@@ -1,8 +1,20 @@
--d_type_string = "Single"
--d_type_string = "Monthly" if @donation.recurring
-
+-d_type_string = "right now"
+-d_type_string = "monthly" if @donation.recurring
+%h1 Thank You!
   
-%p Thanks!  You have chosen to make a #{d_type_string} Donation.  You are fabulous.
+%p Your support is invaluable for keeping our podcasts alive, and we really appreciate your help today.  For your convenience, we offer a flexible array of payment options including...er...
+
+%p Well, right now there's only PayPal.  We're working on it. But PayPal will let you pay with or without an account. Just confirm your information below and, if it's correct, hit the magic button.
+
+%p My name is: #{@donation.name}
+%p My email address is: #{@donation.email}
+%br
+%p I am donating: #{@donation.amount} #{d_type_string}
+%p I want to support: Escape Pod
+
+%p Is any of this wrong? Had a change of heart? You can edit or cancel your donation during this session.
+
+
 
 %form{ :action => "https://www.paypal.com/cgi-bin/webscr"}
 
@@ -32,3 +44,5 @@
   %input{:type=>"hidden", :name=>"business",:value=>"paypal@escapeartists.net"}
   %input{:type=>"hidden", :name=>"currency_code", :value=>"USD"}
   %input{:type=>"hidden", :name=>"no_shipping", :value=>"1"}
+  
+%p When you click this "Donate" Button, you'll be taken to PayPal's site, where you can log in or simply provide a credit card.Our magic helper monkeys will receive notification after you complete your payment.  If you have any trouble with the process, please let us know and we'll do what we can to help.

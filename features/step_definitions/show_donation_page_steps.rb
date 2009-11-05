@@ -15,7 +15,9 @@ Then /^I should see the paypal form$/ do
   response.should have_tag('form', :action => "https://www.paypal.com/cgi-bin/webscr")
 end
 
-
+Then /^a hidden "([^\"]*)" should be "([^\"]*)"$/ do |field_name, value|
+  response.should have_tag('input', :type=>'hidden', :name=>field_name, :value=> value )
+end
 Then /^a hidden "([^\"]*)" should be the donation (.*)$/ do |field_name, attribute|
   response.should have_tag('input', :type=>'hidden', :name=>field_name, :value=> @donation.send(attribute.to_sym) )
 end
