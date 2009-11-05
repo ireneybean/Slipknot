@@ -9,7 +9,7 @@
 %p My name is: #{@donation.name}
 %p My email address is: #{@donation.email}
 %br
-%p I am donating: #{@donation.amount} #{d_type_string}
+%p I am donating: #{sprintf("%.2f",@donation.amount)} #{d_type_string}
 %p I want to support: Escape Pod
 
 %p Is any of this wrong? Had a change of heart? You can edit or cancel your donation during this session.
