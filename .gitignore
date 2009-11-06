@@ -6,3 +6,4 @@ ignore/
 nbproject/
 .project
 .loadpath
+*.css
