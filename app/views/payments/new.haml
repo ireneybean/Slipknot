@@ -1,24 +1,6 @@
 -d_type_string = "right now"
 -d_type_string = "monthly" if @donation.recurring
 
-/TOD0: DO NOT LEAVE THIS HERE!
-%style{:type => "text/css", :media => "screen"}
-  :plain
-    label { 
-      display: block;  /* block float the labels to left column, set a width */
-      float: left; 
-      width: 150px; 
-      padding: 0 .5em 0 0; 
-      text-align: right; 
-    }
-    .prettyBox{
-      background-color:lightBlue; /*TODO: not the right color */
-      border: 2px solid black;
-      width: 225px;
-      padding: .5em 1em .5em 1em;
-      text-align:justify;
-    }
-
 %h1 Thank You!
   
 %p Your support is invaluable for keeping our podcasts alive, and we really appreciate your help today.  For your convenience, we offer a flexible array of payment options including...er...
@@ -48,11 +30,11 @@
   %a{ :href => '#' } cancel
   your donation during this session.
 
-.div{:style => "border: 2px solid black"} 
+.div{:style => "border: 2px solid black;overflow:auto;width:100%"} 
   %form{ :action => "https://www.paypal.com/cgi-bin/webscr"}
 
-    %input{:type => "image", :src => "/images/btn_donate_LG.gif"}
-    When you click this "Donate" Button, you'll be taken to PayPal's site, where you can log in or simply provide a credit card.Our magic helper monkeys will receive notification after you complete your payment.  If you have any trouble with the process, please let us know and we'll do what we can to help.
+    %input{:type => "image", :src => "/images/btn_donate_LG.gif", :style=>"float:left"}
+    %span{:style=>"float:left;width:75%"}When you click this "Donate" Button, you'll be taken to PayPal's site, where you can log in or simply provide a credit card.Our magic helper monkeys will receive notification after you complete your payment.  If you have any trouble with the process, please let us know and we'll do what we can to help.
     -if @donation.recurring
       -#fields for recurring donation
       %input{:type=>"hidden", :name=>"cmd", :value=>"_xclick-subscriptions"}
