@@ -26,4 +26,20 @@ describe PaymentsHelper do
     helper.display_email.should =~ /undisclosed/
   end
   
+  it "is contains each of the supported podcasts" do
+    donation = Donation.new(:escape_pod => true, :podcastle => true, :pseudopod=>true)
+    assigns[:donation] = donation
+    helper.display_podcasts.should =~ /EscapePod/ 
+    helper.display_podcasts.should =~ /PodCastle/
+    helper.display_podcasts.should =~ /Pseudopod/
+  end
+   
+  it "does not contain unsupported podcasts" do
+    donation = Donation.new(:escape_pod => true, :podcastle => false, :pseudopod=>true)
+    assigns[:donation] = donation
+    helper.display_podcasts.should =~ /EscapePod/ 
+    helper.display_podcasts.should_not =~ /PodCastle/
+    helper.display_podcasts.should =~ /Pseudopod/
+  end
+  
 end

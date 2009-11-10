@@ -19,4 +19,11 @@ module PaymentsHelper
   def display_email
     @donation.email.empty? ? "undisclosed" : @donation.email
   end
+  
+  #TODO: This will change when Podcast Model is added
+  def display_podcasts
+    podcasts = @donation.escape_pod ? "EscapePod <br>" : "";
+    podcasts += @donation.podcastle ? "PodCastle <br>": "";
+    podcasts += @donation.pseudopod ? "Pseudopod <br>" : "";
+  end
 end
