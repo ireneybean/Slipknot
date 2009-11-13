@@ -1,7 +1,10 @@
+@import defines.sass
+
 body
   width: 560px
   font-family: Helvetica,Arial,Verdana,sans-serif
   font-size: smaller
+  
 label  
   font-size: larger
   display: block  
@@ -14,9 +17,9 @@ label
   font:
     size: larger
     weight: bold
-
+    
 .prettyBox
-  border: 3px solid black
+  +box_border
   width: 200px
   padding: .5em 1em .5em .5em
   background-color: lightGray
