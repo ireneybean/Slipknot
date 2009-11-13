@@ -9,3 +9,4 @@ nbproject/
 *.css
 script/
 .sass-cache/
+tmp/

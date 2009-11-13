@@ -1,3 +1,6 @@
+/TODO: I do not like this because it puts the stylesheet tag in the body, when it should be in the head
+/ but how do I get around this?
+= stylesheet_link_tag "payments"
 %h1 Thank You!
   
 %p Your support is invaluable for keeping our podcasts alive, and we really appreciate your help today.  For your convenience, we offer a flexible array of payment options including...er...
@@ -6,11 +9,11 @@
 
 %p
   %label My name is: 
-  #{display_name}
+  .readOnly #{display_name}
 
 %p
   %label My email address is: 
-  #{display_email}
+  .readOnly #{display_email}
 %br
 .prettyBox
   Is any of this wrong? Had a change of heart? You can 
@@ -20,19 +23,22 @@
   your donation during this session.
 %p
   %label I am donating: 
-  $#{sprintf("%.2f",@donation.amount)} #{donation_type}
+  .readOnly $#{sprintf("%.2f",@donation.amount)} #{donation_type}
 
 %p
-  %label I want to support: 
-  #{display_podcasts}
+  %label{:style=>"height:3em"} I want to support: 
+  .readOnly #{display_podcasts}
 
 %p &nbsp;
 
-%div{:style => "border: 3px solid black;overflow:auto;width:100%;"} 
+#donate
   %form{ :action => "https://www.paypal.com/cgi-bin/webscr"}
 
-    %input{:type => "image", :src => "/images/btn_donate_LG.gif", :style=>"float:left;padding:1em"}
-    %span{:style=>"font-size:smaller;float:left;width:430px"}When you click this "Donate" Button, you'll be taken to PayPal's site, where you can log in or simply provide a credit card.Our magic helper monkeys will receive notification after you complete your payment.  If you have any trouble with the process, please let us know and we'll do what we can to help.
+    %input{:type => "image", :src => "/images/btn_donate_LG.gif"}
+    %span
+      When you click this "Donate" Button, you'll be taken to PayPal's site, where you can log in or simply provide a credit card.Our magic helper monkeys will receive notification after you complete your payment.  If you have any trouble with the process, please 
+      %a{ :href => '#' }let us know 
+      and we'll do what we can to help.
 
     %input{:type=>"hidden", :name=>"item_name", :value=>"Escape Artists #{donation_type} Donation"}
     %input{:type=>"hidden", :name=>"business",:value=>"paypal@escapeartists.net"}
