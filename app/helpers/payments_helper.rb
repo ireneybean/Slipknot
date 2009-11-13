@@ -22,7 +22,7 @@ module PaymentsHelper
   
   #TODO: This will change when Podcast Model is added
   def display_podcasts
-    podcasts = @donation.escape_pod ? "EscapePod <br>" : "";
+    podcasts = @donation.escape_pod ? "Escape Pod <br>" : "";
     podcasts += @donation.podcastle ? "PodCastle <br>": "";
     podcasts += @donation.pseudopod ? "Pseudopod <br>" : "";
   end
