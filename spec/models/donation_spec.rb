@@ -11,7 +11,7 @@ describe Donation do
       :podcastle => false,
       :recurring => false
     }
-    @d = Donation.new
+    @d = Donation.new(@valid_attributes)
   end
 
   it "should create a new instance given valid attributes" do
@@ -41,5 +41,15 @@ describe Donation do
   it "should not allow the donation amount to be less than 0" do
     @d.amount = -1
     @d.should_not be_valid
+  end
+  
+  it "can be saved" do
+    @d.save.should be_true
+  end
+  
+  it "should allow payments to be associated with itself" do
+    @d.save
+    p = @d.payments.create
+    @d.payments.should_not be_nil
   end
 end

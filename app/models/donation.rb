@@ -1,4 +1,5 @@
 class Donation < ActiveRecord::Base
+  has_many :payments
   validates_numericality_of :amount_cents, :greater_than=>0
   def amount
     self.amount_cents.to_f/100 if self.amount_cents
