@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091124164002) do
+ActiveRecord::Schema.define(:version => 20091130183100) do
 
   create_table "donations", :force => true do |t|
     t.integer  "amount_cents"
@@ -25,11 +25,14 @@ ActiveRecord::Schema.define(:version => 20091124164002) do
 
   create_table "payments", :force => true do |t|
     t.integer  "donation_id"
-    t.integer  "gross_amount_cents"
-    t.integer  "fees_cents"
+    t.integer  "payment_gross_cents"
+    t.integer  "payment_fee_cents"
     t.datetime "paypal_timestamp"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "mc_currency"
+    t.integer  "mc_gross_cents"
+    t.integer  "mc_fee_cents"
   end
 
 end

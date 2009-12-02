@@ -8,6 +8,6 @@ class PaymentsController < ApplicationController
   end
   
   def create
-    @donation.create_payment(params)
+    @donation.payments.create(params)
   end
 end

@@ -11,3 +11,4 @@ class AlterDonation < ActiveRecord::Migration
      change_column_default(:donations, :pseudopod, false)
   end
 end
+
