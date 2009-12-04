@@ -27,12 +27,14 @@ ActiveRecord::Schema.define(:version => 20091130183100) do
     t.integer  "donation_id"
     t.integer  "payment_gross_cents"
     t.integer  "payment_fee_cents"
-    t.datetime "paypal_timestamp"
+    t.datetime "payment_date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "mc_currency"
     t.integer  "mc_gross_cents"
     t.integer  "mc_fee_cents"
+    t.string   "action"
+    t.integer  "item_number"
   end
 
 end
