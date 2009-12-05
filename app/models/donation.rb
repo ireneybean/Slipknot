@@ -1,6 +1,6 @@
-require 'store_amounts_as_cents'
+require 'acts_as_currency'
 class Donation < ActiveRecord::Base
-  extend StoreAmountsAsCents
+  extend ActsAsCurrency
   acts_as_currency :amount
   has_many :payments
   validates_numericality_of :amount_cents, :greater_than=>0

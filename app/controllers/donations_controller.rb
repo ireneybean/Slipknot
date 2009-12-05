@@ -22,7 +22,7 @@ class DonationsController < ApplicationController
     end
   end
   
-  # Show the form to alter exiting record
+  # Show the form to alter existing record
   def edit
   end
   

@@ -1,10 +1,7 @@
-require 'store_amounts_as_cents'
+require 'acts_as_currency'
 class Payment < ActiveRecord::Base
-  extend StoreAmountsAsCents
+  extend ActsAsCurrency
   belongs_to :donation
   validates_presence_of :donation
-  acts_as_currency :payment_gross
-  acts_as_currency :payment_fee
-  acts_as_currency :mc_gross
-  acts_as_currency :mc_fee
+  acts_as_currency :payment_gross, :payment_fee, :mc_gross, :mc_fee
 end
