@@ -3,6 +3,7 @@ When /^I receive a notification of payment received$/ do
 end
 
 Then /^I have a payment record for my donation$/ do
-  pending
+  response.status.should contain("200")
+  Donation.find(@donation.id).payments.should_not be_nil
 end
 

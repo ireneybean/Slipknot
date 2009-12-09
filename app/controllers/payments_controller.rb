@@ -8,6 +8,10 @@ class PaymentsController < ApplicationController
   end
   
   def create
-    @donation.payments.create(params)
+     if @donation.payments.create( params.reject {|key, value| key=="controller"})
+       render :text=>"",:status => 200
+     else 
+       render :text=>"", :status => 500
+     end
   end
 end
