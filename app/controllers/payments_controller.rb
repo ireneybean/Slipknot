@@ -1,5 +1,6 @@
 class PaymentsController < ApplicationController
   before_filter :find_donation
+  protect_from_forgery :except => [:create]
   def new
   end
 
