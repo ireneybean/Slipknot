@@ -4,6 +4,8 @@ end
 
 Then /^I have a payment record for my donation$/ do
   response.status.should contain("200")
-  Donation.find(@donation.id).payments.should_not be_nil
+  d=Donation.find(@donation.id)
+  d.payments.should_not be_nil
+  d.payments[0].action.should == "paypal_ipn"
 end
 
