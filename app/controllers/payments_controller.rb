@@ -17,10 +17,11 @@ class PaymentsController < ApplicationController
   end
   
   def paypal_ack (params)
-    #TODO: add notify_verify
-    #TODO do not save if this is a dup (validation in model)
+    logger.info 'Received Paypal IPN Request.  Verifying'
     params.store("cmd", "notify-verify")
     resp= Net::HTTP.post_form( URI.parse("http://sandbox.paypal.com/"), params )  #TODO: URL in constant that depends on env
-    resp.body=="VERIFIED"
+    logger.error 'Paypal verification failed for #{params.inspect}\nFailure was: resp.inspect' unless resp.body=="VERIFIED"
+    return resp.body=="VERIFIED"
+    
   end
 end
