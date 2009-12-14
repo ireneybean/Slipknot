@@ -4,6 +4,8 @@ class PaymentsController < ApplicationController
   def new
   end
 
+  PAYPAL_URI =  "https://sandbox.paypal.com/cgi-bin/webscr/"
+  
   def find_donation
     @donation = Donation.find(params[:donation_id] || params[:item_number])
   end
@@ -19,7 +21,7 @@ class PaymentsController < ApplicationController
   def paypal_ack (params)
     logger.info 'Received Paypal IPN Request.  Verifying'
     params.store("cmd", "notify-verify")
-    resp= Net::HTTP.post_form( URI.parse("https://sandbox.paypal.com/cgi-bin/webscr"), params )  #TODO: URL in constant that depends on env
+    resp= Net::HTTP.post_form( URI.parse(PAYPAL_URI), params )  #TODO: URL in constant that depends on env
     logger.error "Paypal verification failed for #{params.inspect}\nFailure was: #{resp.inspect}" unless resp.body=="VERIFIED"
     return resp.body=="VERIFIED"
     
