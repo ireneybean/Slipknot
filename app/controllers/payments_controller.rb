@@ -19,9 +19,11 @@ class PaymentsController < ApplicationController
   def paypal_ack (params)
     logger.info 'Received Paypal IPN Request.  Verifying'
     params.store("cmd", "notify-verify")
-    resp= Net::HTTP.post_form( URI.parse("http://sandbox.paypal.com/"), params )  #TODO: URL in constant that depends on env
+    resp= Net::HTTP.post_form( URI.parse("https://sandbox.paypal.com/cgi-bin/webscr"), params )  #TODO: URL in constant that depends on env
     logger.error "Paypal verification failed for #{params.inspect}\nFailure was: #{resp.inspect}" unless resp.body=="VERIFIED"
     return resp.body=="VERIFIED"
     
   end
 end
+
+
