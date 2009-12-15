@@ -4,7 +4,7 @@ class PaymentsController < ApplicationController
   def new
   end
 
-  PAYPAL_URI =  "https://sandbox.paypal.com/cgi-bin/webscr/"
+  PAYPAL_URI = 'http://sandbox.paypal.com/'
   
   def find_donation
     @donation = Donation.find(params[:donation_id] || params[:item_number])

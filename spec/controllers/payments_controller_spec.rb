@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'fakeweb'
 
 describe PaymentsController do
-  PAYPAL_URI =  "https://sandbox.paypal.com/cgi-bin/webscr/"
+  PAYPAL_URI = 'http://sandbox.paypal.com'
   before(:each) do
       @controller = PaymentsController.new
   end
