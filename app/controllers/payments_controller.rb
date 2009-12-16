@@ -11,7 +11,7 @@ class PaymentsController < ApplicationController
   end
   
   def create
-     if paypal_ack(request) && @donation.payments.create( params.reject {|key, value| !Payment.column_names.include? key})
+     if paypal_ack(request.body) && @donation.payments.create( params.reject {|key, value| !Payment.column_names.include? key})
        render :text=>"",:status => 200
      else 
        render :text=>"", :status => 500
