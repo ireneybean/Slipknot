@@ -36,7 +36,7 @@ class PaymentsController < ApplicationController
     #sock.use_ssl = true
     #resp = sock.start {|http| http.request(req)}
    # resp= Net::HTTP.post_form( URI.parse(PAYPAL_URI), params )  #TODO: URL in constant that depends on env
-    logger.error "Paypal verification failed for #{params.inspect}\nResponse body was: #{resp.body.inspect}" unless resp.body=="VERIFIED"
+    logger.error "Paypal verification failed for #{query.inspect}\nResponse body was: #{resp.body.inspect}" unless resp.body=="VERIFIED"
     return resp.body=="VERIFIED"
    end
 end
