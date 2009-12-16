@@ -11,19 +11,20 @@ class PaymentsController < ApplicationController
   end
   
   def create
-     if paypal_ack(params) && @donation.payments.create( params.reject {|key, value| !Payment.column_names.include? key})
+     if paypal_ack(request) && @donation.payments.create( params.reject {|key, value| !Payment.column_names.include? key})
        render :text=>"",:status => 200
      else 
        render :text=>"", :status => 500
      end
   end
   
-  def paypal_ack (params)
+  def paypal_ack (request)
     logger.info 'Received Paypal IPN Request.  Verifying'
    # params[:cmd] = "_notify-validate"
    # params.delete(:action)
    # params.delete(:controller)
-    
+    logger.info(request.inspect)
+    params = request.params
     query = 'cmd=_notify-validate' 
     params.each_pair {|key, value|  query = query + '&' + key + '=' + value.first  if key != 'register/pay_pal_ipn.html/pay_pal_ipn'  } 
     http = Net::HTTP.start("www.paypal.com", 80) 
