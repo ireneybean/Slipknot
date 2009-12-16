@@ -12,10 +12,11 @@ describe Payment do
     Payment.new(:donation => nil).should_not be_valid
   end
   #TODO
-  #it "should have a unique txn_id" do
-  #  Payment.new(:txn_id => "1").should be_valid
-  #  Payment.new(:txn_id => "1").should_not be_valid
-  #end
+  it "should have a unique txn_id" do
+    donation = Donation.create
+    Payment.create(:donation=>donation, :txn_id => "1").should be_valid
+    Payment.new(:donation=>donation,:txn_id => "1").should_not be_valid
+  end
 
  it "converts the gross_amount to cents" do
     @p.payment_gross = 15.35
