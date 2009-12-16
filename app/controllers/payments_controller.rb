@@ -11,7 +11,7 @@ class PaymentsController < ApplicationController
   end
   
   def create
-     if paypal_ack(request.body) && @donation.payments.create( params.reject {|key, value| !Payment.column_names.include? key})
+     if paypal_ack(request) && @donation.payments.create( params.reject {|key, value| !Payment.column_names.include? key})
        render :text=>"",:status => 200
      else 
        render :text=>"", :status => 500
@@ -23,7 +23,7 @@ class PaymentsController < ApplicationController
    # params[:cmd] = "_notify-validate"
    # params.delete(:action)
    # params.delete(:controller)
-    logger.info(request.inspect)
+    logger.info(request.body)
     params = request.params
     query = 'cmd=_notify-validate' 
     params.each_pair {|key, value|  query = query + '&' + key + '=' + value.first  if key != 'register/pay_pal_ipn.html/pay_pal_ipn'  } 
