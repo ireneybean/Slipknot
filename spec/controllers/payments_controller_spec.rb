@@ -2,7 +2,8 @@ require 'spec_helper'
 require 'fakeweb'
 
 describe PaymentsController do
-  PAYPAL_URI = 'https://www.paypal.com/cgi-bin/webscr'
+  PAYPAL_URI = "http://www.sandbox.paypal.com/cgi-bin/webscr"
+
   before(:each) do
       @controller = PaymentsController.new
   end
@@ -12,7 +13,7 @@ describe PaymentsController do
   end
 
   def do_ack
-    @controller.paypal_ack( {'q'=>'ruby', 'max'=>'50'}) 
+    @controller.paypal_ack( '&ruby=50') 
   end
 
   it "sends a notify-validate request and its input to PayPal" do
