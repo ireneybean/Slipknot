@@ -26,3 +26,5 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+
+PAYPAL_URI = "http://www.paypal.com/cgi-bin/webscr"
