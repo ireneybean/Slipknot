@@ -1,0 +1,2 @@
+class OneTimeDonation < Donation
+end

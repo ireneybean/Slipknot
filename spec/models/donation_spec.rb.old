@@ -9,7 +9,6 @@ describe Donation do
       :escape_pod => false,
       :pseudopod => false,
       :podcastle => false,
-      :recurring => false
     }
     @d = Donation.new(@valid_attributes)
   end

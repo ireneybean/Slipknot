@@ -1,0 +1,2 @@
+class RecurringDonation < Donation
+end

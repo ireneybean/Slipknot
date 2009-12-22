@@ -14,7 +14,11 @@ class DonationsController < ApplicationController
   
   # POST action to create the record
   def create
-    @donation = Donation.new(params[:donation])
+    if (params[:donation][:type]=="RecurringDonation")
+      @donation = RecurringDonation.new(params[:donation])
+    else
+      @donation = OneTimeDonation.new(params[:donation])
+    end
     if @donation.save
       redirect_to new_donation_payment_path(@donation)
     else

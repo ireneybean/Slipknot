@@ -1,3 +1,5 @@
+=stylesheet_link_tag "donations"
+
 %h1 Support Escape Artists!
 %p
   %strong Yes,
@@ -12,9 +14,12 @@
   %p
     =form.label :amount, "I want to donate: $"
     =form.text_field :amount, :size => 6
-  %p
-    =form.check_box :recurring
-    =form.label :recurring, "Monthly"
+  %br
+    =form.radio_button :type, "OneTimeDonation"
+    =form.label :type, "...as a one-time donation"
+  %br
+    =form.radio_button :type, "RecurringDonation" 
+    =form.label :type, "...as a monthly recurring subscription."
   %p
     I would like my donation to support:
     %br

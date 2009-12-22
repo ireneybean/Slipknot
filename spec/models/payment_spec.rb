@@ -13,7 +13,7 @@ describe Payment do
   end
   #TODO
   it "should have a unique txn_id" do
-    donation = Donation.create
+    donation = OneTimeDonation.create
     Payment.create(:donation=>donation, :txn_id => "1").should be_valid
     Payment.new(:donation=>donation,:txn_id => "1").should_not be_valid
   end

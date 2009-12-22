@@ -1,11 +1,12 @@
+
 module PaymentsHelper
 
   def donation_type
-    @donation.recurring ? "monthly" : "right now"
+    (@donation.instance_of? RecurringDonation) ? "monthly" : "right now"
   end
   
   def paypal_options
-    if @donation.recurring
+    if @donation.instance_of? RecurringDonation
       render :partial => "recurring"
     else
       render :partial => "onetime"

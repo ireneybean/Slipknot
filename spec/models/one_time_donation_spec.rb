@@ -1,0 +1,66 @@
+require 'spec_helper'
+
+describe OneTimeDonation do
+  before(:each) do
+    @valid_attributes = {
+      :amount_cents => 1,
+      :name => "value for name",
+      :email => "value for email",
+      :escape_pod => false,
+      :pseudopod => false,
+      :podcastle => false,
+    }
+    @d = OneTimeDonation.new(@valid_attributes)
+  end
+
+  it "should be a child of donation" do
+    OneTimeDonation.create!(@valid_attributes).is_a? Donation
+  end
+
+  it "should be an instance of OneTimeDonation" do
+    OneTimeDonation.create!(@valid_attributes).instance_of? OneTimeDonation
+  end
+
+  it "should have a type of 'OneTimeDonation'" do
+    OneTimeDonation.create!(@valid_attributes).type.should == "OneTimeDonation"
+  end
+
+  it "should create a new instance given valid attributes" do
+    OneTimeDonation.create!(@valid_attributes)
+  end
+
+  it "converts the amount to cents" do
+    @d.amount = 15.35
+    @d.amount_cents.should == 1535
+  end
+
+  it "converts the amount in cents to amount in dollars" do
+    @d.amount_cents = 1535
+    @d.amount.should == 15.35
+  end
+  
+  it "returns a blank amount if there are no cents" do
+    @d.amount_cents = nil
+    @d.amount.should be_nil
+  end
+  
+  it "converts the amount as a string to cents" do
+    @d.amount = "15.35"
+    @d.amount_cents.should == 1535
+  end
+
+  it "should not allow the donation amount to be less than 0" do
+    @d.amount = -1
+    @d.should_not be_valid
+  end
+  
+  it "can be saved" do
+    @d.save.should be_true
+  end
+  
+  it "should allow payments to be associated with itself" do
+    @d.save
+    p = @d.payments.create
+    @d.payments.should_not be_nil
+  end
+end

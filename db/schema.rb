@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091212201944) do
+ActiveRecord::Schema.define(:version => 20091220191827) do
 
   create_table "donations", :force => true do |t|
     t.integer  "amount_cents"
@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(:version => 20091212201944) do
     t.boolean  "escape_pod",   :default => true
     t.boolean  "pseudopod",    :default => true
     t.boolean  "podcastle",    :default => true
-    t.boolean  "recurring"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type",         :default => "OneTimeDonation", :null => false
   end
 
   create_table "payments", :force => true do |t|

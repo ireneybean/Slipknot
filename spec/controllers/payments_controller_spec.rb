@@ -17,9 +17,9 @@ describe PaymentsController do
   end
 
   it "sends a notify-validate request and its input to PayPal" do
-    #TODO: Not done
-    reg_fakeweb(PAYPAL_URI, "VERIFIED")
-    do_ack
+    pending
+    #reg_fakeweb(PAYPAL_URI, "VERIFIED")
+    #do_ack
   end 
 
   it "is true if PayPal tells us we're VERIFIED" do
