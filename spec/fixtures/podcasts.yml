@@ -1,0 +1,15 @@
+escapePod:
+  name: Escape Pod
+  image: escapepod.jpg
+  description: The Science Fiction Podcast Magazine
+  url: http://escapepod.org
+podCastle:
+  name: PodCastle
+  image: podcastle.png
+  description: The Fantasy Fiction Podcast
+  url: http://podcastle.org
+pseudopod:
+  name: Pseudopod
+  image: pseudopod.png
+  description: The Sound of Horror
+  url: http://pseudopod.org

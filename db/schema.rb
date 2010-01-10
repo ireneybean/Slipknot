@@ -9,18 +9,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091220191827) do
+ActiveRecord::Schema.define(:version => 20091226052100) do
+
+  create_table "allocations", :force => true do |t|
+    t.integer  "donation_id"
+    t.integer  "podcast_id"
+    t.integer  "amount_cents"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "donations", :force => true do |t|
     t.integer  "amount_cents"
     t.string   "name"
     t.string   "email"
-    t.boolean  "escape_pod",   :default => true
     t.boolean  "pseudopod",    :default => true
-    t.boolean  "podcastle",    :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type",         :default => "OneTimeDonation", :null => false
+    t.string   "comment"
   end
 
   create_table "payments", :force => true do |t|
@@ -38,6 +45,15 @@ ActiveRecord::Schema.define(:version => 20091220191827) do
     t.string   "txn_type"
     t.string   "txn_id"
     t.string   "payment_type"
+  end
+
+  create_table "podcasts", :force => true do |t|
+    t.string   "name"
+    t.string   "image"
+    t.string   "description"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

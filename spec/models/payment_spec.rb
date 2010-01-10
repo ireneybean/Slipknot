@@ -47,6 +47,4 @@ describe Payment do
     @p.payment_fee_cents = nil
     @p.payment_fee.should be_nil
   end
-  
-  
-  end
+end

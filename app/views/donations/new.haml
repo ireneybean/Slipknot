@@ -22,25 +22,26 @@
     =form.label :type, "...as a monthly recurring subscription."
   %p
     I would like my donation to support:
-    %br
-    =form.check_box :escape_pod
-    =form.label :escape_pod, "Escape Pod"
-    %br
-    =form.check_box :podcastle
-    =form.label :podcastle, "PodCastle"
-    %br
-    =form.check_box :pseudopod
-    =form.label :pseudopod, "Pseudopod"
+    -for podcast in Podcast.find(:all)
+      .podcast_box
+        %img{:src=>"/images/#{podcast.image}"}
+        =check_box_tag :podcast_ids, podcast.id,  @donation.podcasts.include?(podcast),  :name => 'donation[podcast_ids][]'
+        %label{:for => "#{podcast.id}"} 
+          %a{:href=>"#{podcast.url}"}#{podcast.name} 
+        %br
+        #{podcast.description}
+
+      
   %p
-    =form.label :name, "My name:"
-    &nbsp;
-    %em (Optional)
+    =form.label :name, "My name is:"
     %br
     =form.text_field :name
   %p
-    =form.label :email, "My email address:"
-    &nbsp;
-    %em (A good idea)
+    =form.label :email, "My email address is:"
     %br
     =form.text_field :email
-  =form.submit "Donate"
+  %p
+    =form.label :comment, "A comment for the editors:"
+    %br
+    =form.text_area :comment
+  =form.submit "Proceed to Payment"

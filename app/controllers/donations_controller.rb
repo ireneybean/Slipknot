@@ -14,6 +14,7 @@ class DonationsController < ApplicationController
   
   # POST action to create the record
   def create
+    params[:donation][:podcast_ids] ||= []
     if (params[:donation][:type]=="RecurringDonation")
       @donation = RecurringDonation.new(params[:donation])
     else

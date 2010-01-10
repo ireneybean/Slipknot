@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe PaymentsHelper do
+  fixtures :podcasts
 
   it "is monthly when the donation is recurring" do
     donation = RecurringDonation.new
@@ -27,19 +28,25 @@ describe PaymentsHelper do
   end
   
   it "is contains each of the supported podcasts" do
-    donation = OneTimeDonation.new(:escape_pod => true, :podcastle => true, :pseudopod=>true)
+    supported = Podcast.find(:all)
+    donation = OneTimeDonation.new
+    donation.podcasts = supported
     assigns[:donation] = donation
+
     helper.display_podcasts.should =~ /Escape Pod/ 
     helper.display_podcasts.should =~ /PodCastle/
     helper.display_podcasts.should =~ /Pseudopod/
   end
    
   it "does not contain unsupported podcasts" do
-    donation = OneTimeDonation.new(:escape_pod => true, :podcastle => false, :pseudopod=>true)
+    donation = OneTimeDonation.new
+    supported = Podcast.find(:all)
+    donation.podcasts = supported[0..1]
+    
     assigns[:donation] = donation
-    helper.display_podcasts.should =~ /Escape Pod/ 
-    helper.display_podcasts.should_not =~ /PodCastle/
-    helper.display_podcasts.should =~ /Pseudopod/
+    helper.display_podcasts.match(supported[0].name).should_not be_nil
+    helper.display_podcasts.match(supported[1].name).should_not be_nil
+    helper.display_podcasts.match(supported[2].name).should be_nil
   end
   
 end
