@@ -1,3 +1,5 @@
+#TODO: Figure out how to check for the podcast checkboxes
+
 Feature: show_donation_pages
   As a donor
   I want to give Escape Artists money
@@ -10,19 +12,19 @@ Feature: show_donation_pages
     And I should see "Escape Pod"
     And I should see "PodCastle"
     And I should see "Pseudopod"
-    And I should see "Monthly"
-    And the "Escape Pod" checkbox should be checked
-    And the "PodCastle" checkbox should be checked
-    And the "Pseudopod" checkbox should be checked
-    And the "Monthly" checkbox should not be checked
+    And I should see "monthly"
+    And the checkbox with id "Escape_Pod" should be checked
+    And the checkbox with id "PodCastle" should be checked
+    And the checkbox with id "Pseudopod" should be checked
+    And the checkbox with id "donation_type_recurringdonation" should not be checked
 
   Scenario: fill in donor form
     Given I am on the new donation page
     When I fill in "I want to donate" with "15"
-    And I check "Escape Pod"
+    And I check "Escape_Pod"
     And I fill in "My name" with "Bob Smith"
     And I fill in "My email" with "bobsmith@gmail.com"
-    And I press "Donate"
+    And I press "Proceed to Payment"
     Then I should have a donation for "Bob Smith"
     And I should be on the new payment page for that donation
 
@@ -50,5 +52,5 @@ Feature: show_donation_pages
   Scenario: validate donation amout
     Given I am on the new donation page
     When I fill in "I want to donate" with "-1"
-    And I press "Donate"
+    And I press "Proceed to Payment"
     Then I should see "Amount must be greater than 0"

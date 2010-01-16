@@ -1,4 +1,4 @@
-
+Fixtures.create_fixtures("spec/fixtures", "podcasts")
 Then /^I should have a donation for "([^\"]*)"$/ do |name|
   @donation = Donation.find_by_name(name)
 end
@@ -8,7 +8,11 @@ Then /^I should see a button labeled "([^\"]*)"$/ do |value|
 end
 
 Given /^I have made a "([^\"]*)" donation record$/ do |type|
-  @donation = Donation.create(:name => "Bob", :email => "BobSmith@gmail.com", :amount => 15, :escape_pod => true, :recurring => type=="monthly")
+  if (type=="single")
+    @donation = OneTimeDonation.create(:name => "Bob", :email => "BobSmith@gmail.com", :amount => 15) 
+  else
+    @donation = RecurringDonation.create(:name => "Bob", :email => "BobSmith@gmail.com", :amount => 15) 
+  end
 end
 
 Then /^I should see the paypal form$/ do
@@ -22,4 +26,15 @@ Then /^a hidden "([^\"]*)" should be the donation (.*)$/ do |field_name, attribu
   response.should have_tag('input', :type=>'hidden', :name=>field_name, :value=> @donation.send(attribute.to_sym) )
 end
 
+Then /^the checkbox with id "([^\"]*)" should be checked$/ do |id|
+  field_with_id(id).should be_checked
+end
 
+
+Then /^the checkbox with id "([^\"]*)" should not be checked$/ do |id|
+  field_with_id(id).should_not be_checked
+end
+
+When /^I check the checkbox with id "([^\"]*)"$/ do |field|
+  check(field)
+end

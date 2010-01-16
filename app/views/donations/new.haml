@@ -25,7 +25,7 @@
     -for podcast in Podcast.find(:all)
       .podcast_box
         %img{:src=>"/images/#{podcast.image}"}
-        =check_box_tag :podcast_ids, podcast.id,  @donation.podcasts.include?(podcast),  :name => 'donation[podcast_ids][]'
+        =check_box_tag "#{podcast.name}" , podcast.id,  @donation.podcasts.include?(podcast),  :name => 'donation[podcast_ids][]'
         %label{:for => "#{podcast.id}"} 
           %a{:href=>"#{podcast.url}"}#{podcast.name} 
         %br
