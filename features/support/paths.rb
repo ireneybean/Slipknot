@@ -14,6 +14,8 @@ module NavigationHelpers
       '/'
     when /the new payment page for that donation/
       new_donation_payment_path(@donation)
+    when /the edit donation page for that donation/
+      edit_donation_path(@donation)
 
     
     # Add more mappings here.

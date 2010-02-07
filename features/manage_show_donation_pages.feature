@@ -54,3 +54,33 @@ Feature: show_donation_pages
     When I fill in "I want to donate" with "-1"
     And I press "Proceed to Payment"
     Then I should see "Amount must be greater than 0"
+    
+  Scenario: validate at least one podcast is selected
+    Given I am on the new donation page
+    When I fill in "I want to donate" with "15"
+    And I fill in "My name" with "John"
+    And I uncheck "Escape_Pod"
+    And I uncheck "PodCastle"
+    And I uncheck "Pseudopod"
+    And I press "Proceed to Payment"
+    Then I should see "Podcasts can't be blank"
+    
+    
+#  Scenario: go to donation edit page
+#    Given I have made a "single" donation record
+#    And I am on the new payment page for that donation
+#    And I follow "edit"
+#    Then I should be on the edit donation page for that donation
+  
+#  Scenario: make changes to existing donation record
+#    pending
+#    Given I have made a "single" donation record
+#    And I am on the edit donation page for that donation
+#    And I choose "donation_type_recurringdonation"
+#    And I fill in "My Name" with "Edited"
+#    And I press "Proceed to Payment"
+#    Then I should be on the new payment page for that donation
+#    And I should see "monthly"
+#    And I should see "Edited"
+#    And I should see "BobSmith@gmail.com"
+    

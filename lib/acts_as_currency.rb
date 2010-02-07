@@ -1,5 +1,4 @@
 module ActsAsCurrency
-  #TODO: enhance this to take an array of fields
   def acts_as_currency(*fields)
    fields.each{|field|
     field_equals = (field.to_s + '=').to_sym

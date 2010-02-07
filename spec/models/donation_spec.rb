@@ -4,10 +4,10 @@ describe Donation do
   fixtures :podcasts
   before(:each) do
     @valid_attributes = {
-      :amount_cents => 1,
+      :amount_cents => 50,
       :name => "value for name",
       :email => "value for email",
-      :podcasts => Podcast.find(:all)
+      :podcast_ids => Podcast.find(:all).map {|x| x.id}
     }
     @d = Donation.new(@valid_attributes)
   end
@@ -58,21 +58,40 @@ describe Donation do
   end
   
   it "should be associated with all podcasts by default" do
-    puts "here#{Podcast.find(:all).length}"
     dd = Donation.new
     dd.podcasts.length.should==Podcast.find(:all).length
 
   end
   it "should be associated with at least one podcast" do
-    
-    @d.podcasts=[]
+    @d.podcast_ids=[]
     @d.should_not be_valid
   end
   it "should be associated with allocation information for each podcast that it is associated with" do
-    pending
+    @d.save
+    @d.podcasts.each do |p|
+      @d.allocations.select{|a| a.podcast_id == p.id}.size.should==1
+    end
   end
   
   it "should contain allocation records whose amounts total its own amount" do
-    pending
+    @d.save
+    sum ||= 0
+    @d.allocations.each do |a|
+      sum += a.amount_cents
+    end 
+    sum.should == 50
+  end
+  
+  it "should allocate the remainder of any donation" do
+    d = Donation.new(
+      :amount_cents => 5,
+      :name => "value for name",
+      :email => "value for email",
+      :podcast_ids => Podcast.find(:all).map {|x| x.id})
+      d.save
+      d.allocations.size.should == 3
+      d.allocations[0].amount_cents.should == 2
+      d.allocations[1].amount_cents.should == 2
+      d.allocations[2].amount_cents.should == 1
   end
 end

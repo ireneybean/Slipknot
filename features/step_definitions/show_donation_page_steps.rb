@@ -9,9 +9,11 @@ end
 
 Given /^I have made a "([^\"]*)" donation record$/ do |type|
   if (type=="single")
-    @donation = OneTimeDonation.create(:name => "Bob", :email => "BobSmith@gmail.com", :amount => 15) 
+    @donation = OneTimeDonation.create(:name => "Bob", :email => "BobSmith@gmail.com", :amount => 15, "podcast_ids"=>Podcast.find(:all,:select=>'id').map {|x| x.id})
+
+
   else
-    @donation = RecurringDonation.create(:name => "Bob", :email => "BobSmith@gmail.com", :amount => 15) 
+    @donation = RecurringDonation.create(:name => "Bob", :email => "BobSmith@gmail.com", :amount => 15, "podcast_ids"=>Podcast.find(:all,:select=>'id').map {|x| x.id})
   end
 end
 

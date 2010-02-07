@@ -1,0 +1,34 @@
+
+=error_messages_for :donation
+%p
+  =form.label :amount, "I want to donate: $"
+  =form.text_field :amount, :size => 6
+%br
+  =form.radio_button :type, "OneTimeDonation"
+  =form.label :type, "...as a one-time donation"
+%br
+  =form.radio_button :type, "RecurringDonation" 
+  =form.label :type, "as a monthly recurring subscription"
+%p
+  I would like my donation to support:
+  -for podcast in Podcast.find(:all)
+    .podcast_box
+      %img{:src=>"/images/#{podcast.image}"}
+      =check_box_tag "#{podcast.name}" , podcast.id,  @donation.podcasts.include?(podcast),  :name => 'donation[podcast_ids][]'
+      %label{:for => "#{podcast.id}"} 
+        %a{:href=>"#{podcast.url}"}#{podcast.name} 
+      %br
+      #{podcast.description}
+    
+%p
+  =form.label :name, "My name is:"
+  %br
+  =form.text_field :name
+%p
+  =form.label :email, "My email address is:"
+  %br
+  =form.text_field :email
+%p
+  =form.label :comment, "A comment for the editors:"
+  %br
+  =form.text_area :comment

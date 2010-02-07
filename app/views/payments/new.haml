@@ -15,12 +15,14 @@
   %label My email address is: 
   .readOnly #{display_email}
 %br
-.prettyBox
-  Is any of this wrong? Had a change of heart? You can 
-  %a{ :href => '#' } edit 
-  or 
-  %a{ :href => '#' } cancel
-  your donation during this session.
+-# Commenting this out.  Edit and cancel require more thought
+-#.prettyBox
+  -#Is any of this wrong? Had a change of heart? You can 
+  -#= link_to "edit", :controller => 'donations', :action=> 'edit', :id => @donation.id 
+  -#or
+  -#=button_to "cancel", { :controller=>'donations', :action => 'destroy', :id =>@donation.id, :method=>:delete}
+  -#-#=link_to "cancel", :controller => 'donations', :action => 'destroy', :id => @donation.id, :method=>:delete
+  -#your donation during this session.
 %p
   %label I am donating: 
   .readOnly $#{sprintf("%.2f",@donation.amount)} #{donation_type}
@@ -37,7 +39,7 @@
     %input{:type => "image", :src => "/images/btn_donate_LG.gif"}
     %span
       When you click this "Donate" Button, you'll be taken to PayPal's site, where you can log in or simply provide a credit card.Our magic helper monkeys will receive notification after you complete your payment.  If you have any trouble with the process, please 
-      %a{ :href => '#' }let us know 
+      =mail_to "me@domain.com", "let us know" 
       and we'll do what we can to help.
 
     %input{:type=>"hidden", :name=>"item_name", :value=>"Escape Artists #{donation_type} Donation"}

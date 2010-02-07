@@ -7,7 +7,7 @@ describe OneTimeDonation do
       :amount_cents => 1,
       :name => "value for name",
       :email => "value for email",
-      :podcasts => Podcast.find(:all)
+      :podcast_ids => Podcast.find(:all).map {|x| x.id}
     }
     @d = OneTimeDonation.new(@valid_attributes)
   end

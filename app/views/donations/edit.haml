@@ -1,0 +1,15 @@
+=stylesheet_link_tag "donations"
+
+%h1 Support Escape Artists!
+%p
+  %strong Yes,
+  I'm a fabulous person and I want to help these short story podcasts succeed.  I understand that my
+  donation supports the authors and production staff of Escape Artists, Inc., and that my email address
+  and other personal information will never
+  %em ever
+  be shared with other third parties, except to enable this payment.
+  
+  -#  -form_for :donation, @donation,:url=>"/donations/update/53/" do |form|
+  -form_for :donation, @donation, :url=>{:action=>"update", },:html => { :method => :put }  do |form|
+    =render :partial=>form
+    =form.submit "Proceed to Payment"
